@@ -24,7 +24,7 @@ git clone [https://github.com/tu-usuario/cv-webcam-yolo.git](https://github.com/
 cd cv-webcam-yolo
 docker build -t ros-yolo-node .
 ```
-💻 Usage
+## 💻 Usage
 To run the complete pipeline, we need to spin up the publisher node and then attach a visualizer to the ROS network.
 
 1. Start the YOLO Publisher Node
