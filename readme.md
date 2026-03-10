@@ -23,31 +23,31 @@ Clone the repository and build the Docker image. This will download the official
 git clone [https://github.com/tu-usuario/cv-webcam-yolo.git](https://github.com/tu-usuario/cv-webcam-yolo.git)
 cd cv-webcam-yolo
 docker build -t ros-yolo-node .
-
+```
 💻 Usage
 To run the complete pipeline, we need to spin up the publisher node and then attach a visualizer to the ROS network.
 
 1. Start the YOLO Publisher Node
 First, allow local Docker containers to access your X11 display server (needed for GUI tools in the next step):
-
+```
 xhost +local:
-
+```
 Then, run the container, passing the webcam device and starting the ROS 2 node:
-
+```
 docker run -it --rm \
     --name mi_robot \
     --device=/dev/video0 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -e DISPLAY=$DISPLAY \
     ros-yolo-node
-
+```
 The node will automatically download the YOLO weights on the first run and start publishing to /vision/detections.
 
 2. Visualize the ROS Topic
 Open a new terminal session and execute the rqt_image_view tool inside the running container to see the real-time inference:
-
+```
 docker exec -it mi_robot bash -c "source /opt/ros/humble/setup.bash && ros2 run rqt_image_view rqt_image_view"
-
+```
 Select /vision/detections from the top-left dropdown menu in the GUI.
 
 🔮 Future Work
